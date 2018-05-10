@@ -1,0 +1,19 @@
+
+REFERENCE LINKS : 
+
+1. Useful Libraries 
+	- https://native.directory/
+	- https://codeburst.io/list-of-useful-libraries-for-your-next-react-web-app-1dc0e3d460b0
+	
+2. Auth in react redux flow 
+	: https://github.com/spencercarli/react-navigation-auth-flow/tree/finished-code
+
+3. Ui comp
+
+-> useful librabies: https://code.tutsplus.com/articles/tools-for-react-native-development--cms-29791
+
+
+--------------SHIP7-------------------
+
+1. Login 
+. https://nativebase.io/
