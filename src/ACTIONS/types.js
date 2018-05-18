@@ -14,3 +14,6 @@ export const REGISTER_USER = 'register_user';
 export const REGISTER_SUCCESS = 'register_success';
 export const REGISTER_FAIL = 'regiter_fail';
 
+//--- COst calculator 
+
+export const COST_CALCULATOR = 'costCalcuaotr'; 

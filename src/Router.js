@@ -6,26 +6,70 @@ import SignUp from './COMPONENTS/Login/Signup';
 import ForgotPassword from './COMPONENTS/Login/Forgotpass.js';
 import Dashboard from './COMPONENTS/Dashboard/Dashboard.js';
 import Calculator from './CALCULATOR/calculator.js';
+import Tmp from './CALCULATOR/tmp.js';
+import ErrorModal from './CALCULATOR/ErrorModal.js';
+import DisplayCost from './CALCULATOR/DisplayCost.js';
+import MyAccount from './MyAccount/myAccount.js';
+import EditPersonalInfo from './MyAccount/EditPersonalInfo.js';
+import EditEmail from './MyAccount/EditEmail.js';
+import EditPassword from './MyAccount/EditPassword';
+import EditAddress from './MyAccount/EditAddress.js';
 
 const RouterComponent = () => {
     return (
         <Router>
             <Scene key="root" hideNavBar> 
+            
+                
                 <Scene key="Scene_1_Auth" > 
                 <Scene 
-                    key="initial_page" 
+                    key="initial_page"  
                     component={Initial} 
                     title="Initial_Page" 
                     hideNavBar  
-                                        
+                                      
                 />
                 <Scene key="login" component={Login} title="Login" />
                 <Scene key="signUp" component={SignUp} title="Register" /> 
                 <Scene key="forgotpassword" component={ForgotPassword} title="ForgotPassword" />
                 <Scene key="dashboard" component={Dashboard} title="Dashboard" />
-                <Scene key="costcalculator" component={Calculator} title="Cost CAlculator" initial />  
+                <Scene key="" component={Tmp} title="tmp" hideNavBar />
+                <Scene 
+                key='costcalinfo' component={ErrorModal} title="Modal" 
+                direction="vertical" hideNavBar 
+                /> 
+                <Scene 
+                key="displayCost" component={DisplayCost} title="displayCost" 
+                direction="vertical" hideNavBar 
+                />
+                <Scene key="myaccount" component={MyAccount} title="myaccount" hideNavBar  />
+                <Scene 
+                    key="editpersonalinfo" 
+                    component={EditPersonalInfo} 
+                    title="editinfo" 
+                    direction="vertical" 
+                    hideNavBar 
+                    
+                />
                 </Scene>
-            </Scene>    
+
+                <Scene 
+                key="editemail" component={EditEmail} title="editemail" 
+                direction="vertical" hideNavBar 
+                />
+                
+                <Scene 
+                key="editpassword" component={EditPassword} title="editpassword" 
+                direction="vertical" hideNavBar 
+                />
+                
+                
+                <Scene 
+                key="editAddress" component={EditAddress} title="editAddress" 
+                direction="vertical" hideNavBar initial
+                />
+                </Scene>  
+               
         </Router>     
     );
 };
