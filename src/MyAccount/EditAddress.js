@@ -1,34 +1,47 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, StyleSheet } from 'react-native';
-import {Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
+import { Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { ChangeMyAddress } from '../ACTIONS/Act_Index.js'; 
 
-export default class HelloWorldApp extends Component {
+class HelloWorldApp extends Component {
   
-   constructor(props){
+   constructor(props) {
        super(props); 
        this.state = {
-           contactPerson: '',
-           phone: '',
-           addressLine1: '',
-           addressLine2: '',
-           addressLine3: '',
-           districtTown: '',
-           city: '', 
-           postalCode: ''
+           contactPerson: this.props.contactPerson,
+           phone: this.props.phone,
+           addressLine1: this.props.addressLine1,
+           addressLine2: this.props.addressLine2,
+           addressLine3: this.props.addressLine3,
+           districtTown: this.props.districtTown,
+           city: this.props.city, 
+           postalCode: this.props.postalCode
        };
    } 
 
    onValChange = (key, value) => { 
-    console.log("STATE =", key);
-    console.log("Value =", value);     
-    console.log(" ");
     this.setState({ [key]: value });     
  }
 
- validateAd(){
-
-    console.log("Button Pressed");
+ validateAd() {
+    if (this.state.phone === '' || this.state.addressLine1 === '') {
+        Toast.show({
+            text: 'Phone or Address fields are empty',
+            type: 'danger',
+            position: 'bottom',
+            duration: 4000    
+          });
+    } else {         
+        Toast.show({
+            text: 'Deatiles saved successfully',
+            type: 'success',
+            position: 'bottom',
+            duration: 4000    
+          });
+          this.props.ChangeMyAddress(this.state);
+    }            
  }
 
   render() {
@@ -144,21 +157,48 @@ export default class HelloWorldApp extends Component {
 
                     <CardItem>                        
                         <Body>
-                            <Button block light onPress={this.validateAd.bind(this)}>                            
+                            <Button 
+                            block 
+                            light 
+                            onPress={this.validateAd.bind(this)}
+                            >                            
                                 <Text>Save Changes</Text>
                             </Button>
                         </Body>                
                     </CardItem>  
                     
+                    <CardItem>
+                        
+                <Body>
+                    <Button iconLeft block light onPress={() => Actions.pop()}>
+                        <Icon name='arrow-back' />
+                        <Text>Back To Account</Text>
+                    </Button>
+                </Body>
+                
+        </CardItem>
 
                     </Card>
                     
                 </Root>
              </ScrollView>
     );
-
   }
 }
+
+
+const mapSatateToProps = state => {
+    return {
+        contactPerson: state.MyAccount.contactPerson, 
+        phone: state.MyAccount.phone,
+        addressLine1: state.MyAccount.addressLine1,
+        addressLine2: state.MyAccount.addressLine2, 
+        addressLine3: state.MyAccount.addressLine3, 
+        districtTown: state.MyAccount.districtTown,
+        city: state.MyAccount.city, 
+        postalCode: state.MyAccount.postalCode
+    };
+};
 
 const styles = StyleSheet.create({
     conatinerStyles: {
@@ -167,3 +207,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#C0C0C0'
     }
 });
+
+export default connect(mapSatateToProps, { ChangeMyAddress })(HelloWorldApp);

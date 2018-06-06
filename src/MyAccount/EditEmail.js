@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, StyleSheet } from 'react-native';
-import {Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
+import { Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 import validator from 'validator';
+import { ChangeEmailSecurity } from '../ACTIONS/Act_Index.js'; 
 
-export default class EditEmail extends Component {
-    constructor(props){
+
+class EditEmail extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             emailUE: '',
@@ -18,8 +21,7 @@ export default class EditEmail extends Component {
      }
 
      validateUE() {
-        if (this.state.emailUE === '' || this.state.remailUE === '')
-        {            
+        if (this.state.emailUE === '' || this.state.remailUE === '') {            
             Toast.show({
                 text: this.state.error,
                 buttonText: 'one or more field is emty',
@@ -28,8 +30,7 @@ export default class EditEmail extends Component {
                 duration: 4000    
               });
         } else
-        if (!validator.isEmail(this.state.emailUE))
-        {
+        if (!validator.isEmail(this.state.emailUE)) {
             Toast.show({
                 text: this.state.error,
                 buttonText: 'A invalid email',
@@ -38,9 +39,7 @@ export default class EditEmail extends Component {
                 duration: 4000    
               });
         } else 
-        if (this.state.emailUE !== this.state.remailUE)
-        {
-            
+        if (this.state.emailUE !== this.state.remailUE) {            
             Toast.show({
                 text: this.state.error,
                 buttonText: 'passwords dont match',
@@ -48,8 +47,8 @@ export default class EditEmail extends Component {
                 position: 'top',
                 duration: 4000    
               });
-        } else 
-        {
+        } else {
+            this.props.ChangeEmailSecurity(this.state.emailUE); 
             Toast.show({
                 text: this.state.error,
                 buttonText: 'EMail Updated ',
@@ -57,8 +56,7 @@ export default class EditEmail extends Component {
                 position: 'top',
                 duration: 4000    
               });
-        }
-        
+        }        
      }      
      
 
@@ -70,7 +68,11 @@ export default class EditEmail extends Component {
                 <Card>
                     <CardItem header bordered>
                             <Text 
-                                style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}                        
+                                style={{ 
+                                        flex: 1, 
+                                        textAlign: 'center', 
+                                        fontWeight: 'bold' 
+                                        }}                        
                             >Update Email Address
                             </Text>
                     </CardItem> 
@@ -83,7 +85,9 @@ export default class EditEmail extends Component {
                             <Input                           
                             keyboardType='email-address'
                             value={this.state.emailUE}   
-                            onChangeText={this.onValChange.bind(this, 'emailUE')}                          
+                            onChangeText={
+                                this.onValChange.bind(this, 'emailUE')
+                                        }                          
                             />
                         </Item>
                     </Body>
@@ -96,7 +100,9 @@ export default class EditEmail extends Component {
                             <Input 
                             keyboardType='email-address'  
                             value={this.state.remailUE}   
-                            onChangeText={this.onValChange.bind(this, 'remailUE')}                            
+                            onChangeText={
+                                this.onValChange.bind(this, 'remailUE')
+                            }                            
                             />
                         </Item>
                     </Body>
@@ -105,7 +111,11 @@ export default class EditEmail extends Component {
                 <CardItem>
                         
                     <Body>
-                        <Button block light onPress={this.validateUE.bind(this)}>                            
+                        <Button 
+                            block 
+                            light 
+                            onPress={this.validateUE.bind(this)}
+                        >                            
                             <Text>Save Changes</Text>
                         </Button>
                     </Body>
@@ -137,3 +147,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#C0C0C0'
     }
 });
+
+export default connect(null, { ChangeEmailSecurity })(EditEmail); 

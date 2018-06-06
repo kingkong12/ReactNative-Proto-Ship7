@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, StyleSheet } from 'react-native';
-import {Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
+import { Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
-export default class EditPersonalInfo extends Component {
+import { ActionPersonalInfo } from '../ACTIONS/Act_Index.js'; 
+
+class EditPersonalInfo extends Component {
   constructor(props) {
       super(props); 
       this.state = {
-          companyName: 'You parcel',
-          firstName: 'Mithil',
-          lastName: 'Vasani',
-          altName: 'Abc'
+          companyName: this.props.company,
+          firstName: this.props.firstName,
+          lastName: this.props.lastName,
+          altName: this.props.alterateName
       };  
   }
   
-  onValChange = (key, value) => {   
-     console.log(key);
-     console.log(value); 
+    
+  onValChange = (key, value) => {         
      this.setState({ [key]: value });     
-  }
+   }
 
-  SaveChanges() {  
-    console.log(this.state);    
+   
+  SaveChanges() {        
     Toast.show({
         text: this.state.error,
         buttonText: 'Personal information Saved Successfully !!!',
@@ -29,7 +31,15 @@ export default class EditPersonalInfo extends Component {
         position: 'top',
         duration: 4000    
       });
+
+      this.props.ActionPersonalInfo({
+        company: this.state.companyName,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        alterateName: this.state.altName         
+      });
   }
+  
   
   render() {
     return (
@@ -38,7 +48,11 @@ export default class EditPersonalInfo extends Component {
         <Card>
             <CardItem header bordered>
                     <Text 
-                        style={{ flex: 1, textAlign: 'center', fontWeight: 'bold' }}                        
+                        style={{ 
+                            flex: 1, 
+                            textAlign: 'center', 
+                            fontWeight: 'bold' 
+                            }}                        
                     >Personal Information
                     </Text>
 
@@ -120,6 +134,14 @@ export default class EditPersonalInfo extends Component {
   }
 }
 
+const mapSatateToProps = state => {
+    return {
+        company: state.MyAccount.company, 
+        firstName: state.MyAccount.firstName,
+        lastName: state.MyAccount.lastName,
+        alterateName: state.MyAccount.alterateName, 
+    };
+};
 
 const styles = StyleSheet.create({
     conatinerStyles: {
@@ -129,3 +151,4 @@ const styles = StyleSheet.create({
     }
 });
 
+export default connect(mapSatateToProps, { ActionPersonalInfo })(EditPersonalInfo);

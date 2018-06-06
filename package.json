@@ -8,10 +8,13 @@
   },
   "dependencies": {
     "firebase": "^4.12.1",
+    "lodash": "^4.17.10",
     "native-base": "^2.4.3",
     "react": "16.3.1",
     "react-native": "0.55.1",
+    "react-native-easy-grid": "^0.1.17",
     "react-native-elements": "^0.19.1",
+    "react-native-modalbox": "^1.4.2",
     "react-native-router-flux": "^4.0.0-beta.28",
     "react-native-table-component": "^1.1.8",
     "react-native-vector-icons": "^4.6.0",

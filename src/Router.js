@@ -14,43 +14,126 @@ import EditPersonalInfo from './MyAccount/EditPersonalInfo.js';
 import EditEmail from './MyAccount/EditEmail.js';
 import EditPassword from './MyAccount/EditPassword';
 import EditAddress from './MyAccount/EditAddress.js';
+import DashBoardV2 from './DashBoard_V2/DashboardV2.js';
+
+import Billing from './BILLING/Billing.js'; 
+import ShipmentHistory from './ShipmentHistory/ShipmentHistory.js';
 
 const RouterComponent = () => {
     return (
+    
+
         <Router>
-            <Scene key="root" hideNavBar> 
-            
+            <Scene key="root" hideNavBar>            
                 
-                <Scene key="Scene_1_Auth" > 
-                <Scene 
-                    key="initial_page"  
-                    component={Initial} 
-                    title="Initial_Page" 
-                    hideNavBar  
+                
+                    <Scene 
+                        key="initial_page"  
+                        component={Initial} 
+                        title="Initial_Page" 
+                        hideNavBar  
+                        
                                       
-                />
-                <Scene key="login" component={Login} title="Login" />
-                <Scene key="signUp" component={SignUp} title="Register" /> 
-                <Scene key="forgotpassword" component={ForgotPassword} title="ForgotPassword" />
-                <Scene key="dashboard" component={Dashboard} title="Dashboard" />
-                <Scene key="" component={Tmp} title="tmp" hideNavBar />
+                    />
+                    <Scene key="login" component={Login} title="Login" />
+                    <Scene key="signUp" component={SignUp} title="Register" /> 
+                    <Scene key="forgotpassword" component={ForgotPassword} title="ForgotPassword" />
+                    
+                    
+                    <Scene key="dashboard" component={Dashboard} title="Dashboard" />
+                    <Scene key="dashboardV2" component={DashBoardV2} title="Dashboard" hideNavBar />
+                    
+                    <Scene key="" component={Tmp} title="tmp" hideNavBar />
+                    <Scene 
+                        key='costcalinfo' component={ErrorModal} title="Modal" 
+                        direction="vertical" hideNavBar 
+                    /> 
+                    <Scene 
+                    key="displayCost" component={DisplayCost} title="displayCost" 
+                    direction="vertical" hideNavBar 
+                    />
+                    
+                    
+                    <Scene key="myaccount" component={MyAccount} title="myaccount" hideNavBar />
+                    <Scene 
+                        key="editpersonalinfo" 
+                        component={EditPersonalInfo} 
+                        title="editinfo" 
+                        direction="vertical" 
+                        hideNavBar 
+                        
+                    />
+
+
                 <Scene 
-                key='costcalinfo' component={ErrorModal} title="Modal" 
+                key="editemail" component={EditEmail} title="editemail" 
                 direction="vertical" hideNavBar 
-                /> 
+                />                
                 <Scene 
-                key="displayCost" component={DisplayCost} title="displayCost" 
+                key="editpassword" component={EditPassword} title="editpassword" 
                 direction="vertical" hideNavBar 
-                />
-                <Scene key="myaccount" component={MyAccount} title="myaccount" hideNavBar  />
+                />                
+                
                 <Scene 
-                    key="editpersonalinfo" 
-                    component={EditPersonalInfo} 
-                    title="editinfo" 
-                    direction="vertical" 
-                    hideNavBar 
+                key="editAddress" component={EditAddress} title="editAddress" 
+                direction="vertical" hideNavBar
+                />
+               
+
+                <Scene 
+                    key="BillingInfo" component={Billing} title="BillingInfo"
                     
                 />
+
+                <Scene 
+                    key="ShipmentHistory" component={ShipmentHistory} title="ShipmentHistory"
+                    initial
+                />
+
+                </Scene>               
+        </Router>     
+
+
+    );
+};
+
+export default RouterComponent;
+
+
+/*
+
+ <Router>
+            <Scene key="root" hideNavBar>            
+                
+                <Scene key="Scene_1_Auth" > 
+                    <Scene 
+                        key="initial_page"  
+                        component={Initial} 
+                        title="Initial_Page" 
+                        hideNavBar                                          
+                    />
+                    <Scene key="login" component={Login} title="Login" />
+                    <Scene key="signUp" component={SignUp} title="Register" /> 
+                    <Scene key="forgotpassword" component={ForgotPassword} title="ForgotPassword" />
+                    <Scene key="dashboard" component={Dashboard} title="Dashboard" />
+                    <Scene key="" component={Tmp} title="tmp" hideNavBar />
+                    <Scene 
+                        key='costcalinfo' component={ErrorModal} title="Modal" 
+                        direction="vertical" hideNavBar 
+                    /> 
+                    <Scene 
+                    key="displayCost" component={DisplayCost} title="displayCost" 
+                    direction="vertical" hideNavBar 
+                    />
+                    <Scene key="myaccount" component={MyAccount} title="myaccount" hideNavBar initial/>
+                    <Scene 
+                        key="editpersonalinfo" 
+                        component={EditPersonalInfo} 
+                        title="editinfo" 
+                        direction="vertical" 
+                        hideNavBar 
+                        
+                    />
                 </Scene>
 
                 <Scene 
@@ -66,12 +149,11 @@ const RouterComponent = () => {
                 
                 <Scene 
                 key="editAddress" component={EditAddress} title="editAddress" 
-                direction="vertical" hideNavBar initial
+                direction="vertical" hideNavBar
                 />
                 </Scene>  
                
         </Router>     
-    );
-};
 
-export default RouterComponent;
+
+*/

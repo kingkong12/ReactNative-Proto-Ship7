@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native'; 
 import { Container, Content, Footer, FooterTab, Button, Text, Header, Left, Right, Body, Icon } from 'native-base';
-
+import { Card } from 'react-native-elements';
+import { Col, Row, Grid } from "react-native-easy-grid";
+import { Actions } from 'react-native-router-flux';
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -27,7 +29,7 @@ export default class Dashboard extends Component {
             return (<Text>HISTORY TAB ACTIVATED</Text>);
 
             case 'Billing':
-            return (<Text>Billing TAB </Text>);
+            return (Actions.myaccount());
 
             default:
             return (<View>
@@ -63,7 +65,11 @@ export default class Dashboard extends Component {
 
                     
                     <Content>
-                        {this.renderAciveButton()}            
+                        <Grid>
+                        <Col>    
+                        {this.renderAciveButton()}  
+                        </Col>
+                        </Grid>           
                     </Content>
 
                     <Footer >            

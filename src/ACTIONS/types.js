@@ -17,3 +17,18 @@ export const REGISTER_FAIL = 'regiter_fail';
 //--- COst calculator 
 
 export const COST_CALCULATOR = 'costCalcuaotr'; 
+
+
+//---My ACCOUNT--- 
+export const ChangePersonalInfo = 'changePersonalInfo';  
+export const ChangeEmail = 'changeEmail';
+export const ChangePassword = 'ChangePassword'; 
+export const ChangeAddress = 'changeaddress';
+
+//-- Billing-- 
+export const BillingId = 'billingId'; 
+
+
+//-- HIstory 
+
+export const HistoryId = 'historyId'; 

@@ -2,19 +2,11 @@ import React, { Component } from 'react';
 import { Text, StyleSheet, ScrollView } from 'react-native';
 import { Card, CardItem, Body, Item, Label, Input, Button } from 'native-base'; 
 import { Actions } from 'react-native-router-flux'; 
-
-export default class MyAccount extends Component {
-    constructor(props) {
-    super(props);
-    this.state = {
-                NamePI: 'Mithil Vasani',
-                emailSI: 'vasannimithil999@gmail.com',
-                passwordSI: '123456',
-                Country: 'USA'
-        };
-    }
+import { connect } from 'react-redux';
 
 
+class MyAccount extends Component {
+    
   render() {
     return (
       <ScrollView style={styles.conatinerStyles}>  
@@ -30,7 +22,10 @@ export default class MyAccount extends Component {
                 <Body>
                     <Item stackedLabel>
                         <Label> Comapny </Label>
-                        <Input disabled />
+                        <Input 
+                            placeholder={this.props.company} 
+                            disabled 
+                        />
                     </Item>
                 </Body>
             </CardItem>
@@ -39,7 +34,10 @@ export default class MyAccount extends Component {
                 <Body>
                     <Item stackedLabel>
                         <Label> Name</Label>
-                        <Input placeholder={this.state.NamePI} disabled />
+                        <Input 
+                            placeholder={this.props.firstName}
+                            disabled 
+                        />
                     </Item>
                 </Body>
             </CardItem>
@@ -48,7 +46,10 @@ export default class MyAccount extends Component {
                 <Body>
                     <Item stackedLabel>
                         <Label> Other (Loacl) Name </Label>
-                        <Input disabled />
+                        <Input 
+                            placeholder={this.props.alterateName}
+                            disabled 
+                        />
                     </Item>
                 </Body>
             </CardItem>
@@ -77,9 +78,9 @@ export default class MyAccount extends Component {
                     <Item stackedLabel>
                         <Label> email </Label>
                         <Input 
-                        value={this.state.emailSI}
+                        placeholder={this.props.email}
                         disabled 
-                    />
+                        />
                     </Item>
                 </Body>
         </CardItem>
@@ -90,7 +91,7 @@ export default class MyAccount extends Component {
                         <Label> password </Label>
                         <Input 
                         secureTextEntry
-                        value={this.state.passwordSI}
+                        placeholder={this.props.password}
                         disabled 
                         />
                     </Item>
@@ -126,8 +127,9 @@ export default class MyAccount extends Component {
                     <Item stackedLabel>
                         <Label> Country </Label>
                         <Input 
-                        placeholder={this.state.Country}
-                        disabled />
+                            placeholder='USA'
+                            disabled 
+                        />
                     </Item>
                 </Body>
             </CardItem>
@@ -136,14 +138,17 @@ export default class MyAccount extends Component {
                 <Body>
                     <Item stackedLabel>
                         <Label> Address </Label>
-                        <Input disabled />
+                        <Input 
+                            placeholder={this.props.addressLine1}
+                            disabled 
+                        />
                     </Item>
                 </Body>
             </CardItem>
 
             <CardItem>
                 <Body>
-                    <Button block light>
+                    <Button block light onPress={() => Actions.editAddress()}>
                         <Text> Change Address ? </Text>
                     </Button>
                 </Body>
@@ -155,6 +160,18 @@ export default class MyAccount extends Component {
   }
 }
 
+const mapSatateToProps = state => {
+    return {
+        company: state.MyAccount.company, 
+        firstName: state.MyAccount.firstName,
+        lastName: state.MyAccount.lastName,
+        alterateName: state.MyAccount.alterateName, 
+        email: state.MyAccount.email,
+        password: state.MyAccount.password,
+        addressLine1: state.MyAccount.addressLine1
+    };
+};
+
 const styles = StyleSheet.create({
     conatinerStyles: {
         flex: 1,
@@ -162,3 +179,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#C0C0C0'
     }
 });
+
+export default connect(mapSatateToProps, null)(MyAccount); 

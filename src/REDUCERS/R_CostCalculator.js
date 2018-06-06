@@ -12,8 +12,7 @@ const InitialState = {
 
 export default (state = InitialState, action) => {    
     switch (action.payload) {
-        default: 
-        console.log(action.payload);
+        default:         
         return state;
     }    
 

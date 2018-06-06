@@ -1,0 +1,34 @@
+[
+    {"tid": "602718",
+    "type": "Debit",    
+    "date" : "05/22/2017",
+    "amount": "17.89",
+    "description": "Courtesy"
+    },
+    {"tid": "602732",
+        "type": "Credit",    
+        "date" : "12/21/2017",
+        "amount": "122",
+        "description": "Courtesy"
+    },
+    {"tid": "602717",
+    "type": "Debit",
+    "date" : "05/21/2015",     
+    "amount": "121",
+    "description": "Shipping Cost"
+    },
+    {"tid": "560270",
+    "type": "Credit",
+    "date" : "03/02/2016",     
+    "amount": "54",
+    "description": "Other Cost"
+    }, 
+    {"tid": "560232",
+    "type": "Debit",
+    "date" : "12/01/2016",     
+    "amount": "99",
+    "description": "Other Cost"
+    }    
+]
+     
+    
