@@ -1,6 +1,10 @@
 /* Component is connected to actions but not reducers  */
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { 
+  Text, 
+  StyleSheet, 
+  ScrollView 
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import { Card, CardItem, Picker, Input, Item, Root, Button, Toast } from 'native-base';
@@ -28,8 +32,8 @@ export default class Tmp extends Component {
   }
 
   onValChange = (key, value) => {
-    //console.log('key ', key);
-    //console.log('value', value);
+    console.log('key ', key);
+    console.log('value', value);
      this.setState({ [key]: value });
      //setTimeout(() => console.log(this.state), 3000);
   }
@@ -44,10 +48,14 @@ export default class Tmp extends Component {
       widthSate,
       heightState } = this.state;  
 
-      if (weightState === '' || lengthState === '' || widthSate === '' || heightState === '') {        
+      if (
+        weightState === '' || 
+        lengthState === '' || 
+        widthSate === '' || 
+        heightState === ''
+      ) {        
         this.setState({ error: 'One or more field is empty' });      
-      } else {        
-            
+      } else {  
           ActionCostCalculator({ originState, 
           destinationState, 
           selectedIndex, 
@@ -67,7 +75,9 @@ export default class Tmp extends Component {
           buttonText: 'Okay',
           type: 'danger',
       
-        }));
+        })
+        
+      );
   } 
   return (null); 
   }
@@ -76,6 +86,10 @@ export default class Tmp extends Component {
     const buttons = ['LBS - Inches', 'Kg - cm'];
 
     return (
+      <ScrollView
+      style={styles.CostCalculatorcontainer} 
+      showsVerticalScrollIndicator={false}  
+      >
       <Root style={styles.container}>        
         <Card>
           <CardItem style={styles.cardItem}>
@@ -84,9 +98,8 @@ export default class Tmp extends Component {
                     mode='dialog'
                     style={{ height: 50, width: 200 }}
                     selectedValue={this.state.originState}
-                    onValueChange={this.onValChange.bind(this, 'originState')}
-              >
-                    
+                    onValueChange={() => this.onValChange.bind(this, 'originState')}
+              >                    
                     <Picker.Item label="USA Mailbox" value="USA" />
                     <Picker.Item label="United Kingdom mailbox" value="UK" />
               </Picker>
@@ -99,7 +112,7 @@ export default class Tmp extends Component {
                     mode='dialog'
                     style={{ height: 50, width: 200 }}
                     selectedValue={this.state.destinationState}
-                    onValueChange={this.onValChange.bind(this, 'destinationState')}
+                    onValueChange={() => this.onValChange.bind(this, 'destinationState')}
           >
                     <Picker.Item label="USA" value="USA" />
                     <Picker.Item label="Greece" value="Greece" />
@@ -188,11 +201,15 @@ export default class Tmp extends Component {
             })
           }
       </Root>
+      </ScrollView>
       );
   }
 }
 
 const styles = StyleSheet.create({
+  CostCalculatorcontainer: {
+    flex: 1, 
+},
   container: {
    flex: 1,  // means 100% screen avalibale 
    padding: 7,

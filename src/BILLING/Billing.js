@@ -17,7 +17,7 @@ import { CardSection } from '../COMMON/index.js';
 import { connect } from 'react-redux';
 import BillingItems from './BillingItems.js'; 
 
-class HelloWorldApp extends Component {
+class Billing extends Component {
   
   constructor(){
     super(); 
@@ -138,5 +138,5 @@ const mapStateToProps = state => {
   }; 
 };
 
-export default connect(mapStateToProps, null)(HelloWorldApp); 
+export default connect(mapStateToProps, null)(Billing); 
 

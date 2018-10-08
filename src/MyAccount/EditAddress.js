@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, StyleSheet } from 'react-native';
+import { Text, ScrollView, StyleSheet, Alert } from 'react-native';
 import { Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -27,19 +27,15 @@ class HelloWorldApp extends Component {
 
  validateAd() {
     if (this.state.phone === '' || this.state.addressLine1 === '') {
-        Toast.show({
-            text: 'Phone or Address fields are empty',
-            type: 'danger',
-            position: 'bottom',
-            duration: 4000    
-          });
-    } else {         
-        Toast.show({
-            text: 'Deatiles saved successfully',
-            type: 'success',
-            position: 'bottom',
-            duration: 4000    
-          });
+        Alert.alert('Failed',
+        'Phone or Address fields are empty',   
+        
+          );
+    } else {  
+        Alert.alert('Success',
+        'Deatiles saved successfully',  
+        
+          ); 
           this.props.ChangeMyAddress(this.state);
     }            
  }
@@ -170,7 +166,9 @@ class HelloWorldApp extends Component {
                     <CardItem>
                         
                 <Body>
-                    <Button iconLeft block light onPress={() => Actions.pop()}>
+                    <Button 
+                    iconLeft block light onPress={() => Actions.popTo('dashboardV2')}
+                    >
                         <Icon name='arrow-back' />
                         <Text>Back To Account</Text>
                     </Button>

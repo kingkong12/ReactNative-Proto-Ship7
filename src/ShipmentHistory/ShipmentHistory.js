@@ -18,12 +18,10 @@ class ShipmentHistory extends Component {
   }
   
   onValChange = (key, value) => {         
-    this.setState({ [key]: value });
-    
+    this.setState({ [key]: value });    
     }   
 
-  render() {   
-        
+  render() {           
     const { testDataH } = this.props; 
     var filterData = Object.assign(testDataH);    
 
@@ -128,8 +126,7 @@ class ShipmentHistory extends Component {
 const styles = StyleSheet.create({
 
   container: {
-    marginTop: 10,
-    marginHorizontal: 10
+    padding: 10
   },   
   pageTopHeader: {
     flex: 1, 

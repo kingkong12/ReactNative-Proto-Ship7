@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, StyleSheet } from 'react-native';
+import { Text, ScrollView, StyleSheet, Alert } from 'react-native';
 import { Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -21,41 +21,25 @@ class EditEmail extends Component {
      }
 
      validateUE() {
-        if (this.state.emailUE === '' || this.state.remailUE === '') {            
-            Toast.show({
-                text: this.state.error,
-                buttonText: 'one or more field is emty',
-                type: 'danger',
-                position: 'top',
-                duration: 4000    
-              });
+        if (this.state.emailUE === '' || this.state.remailUE === '') {   
+            Alert.alert('Failed TO Update',
+            'one or more field is emty',               
+            );
         } else
         if (!validator.isEmail(this.state.emailUE)) {
-            Toast.show({
-                text: this.state.error,
-                buttonText: 'A invalid email',
-                type: 'danger',
-                position: 'top',
-                duration: 4000    
-              });
+            Alert.alert('Failed TO Update',
+            'In valid Email',               
+            );
         } else 
         if (this.state.emailUE !== this.state.remailUE) {            
-            Toast.show({
-                text: this.state.error,
-                buttonText: 'passwords dont match',
-                type: 'danger',
-                position: 'top',
-                duration: 4000    
-              });
+            Alert.alert('Failed TO Update',
+            'Passo=word dont match',               
+            );
         } else {
             this.props.ChangeEmailSecurity(this.state.emailUE); 
-            Toast.show({
-                text: this.state.error,
-                buttonText: 'EMail Updated ',
-                type: 'success',
-                position: 'top',
-                duration: 4000    
-              });
+            Alert.alert('Success',
+            'Email Updated',               
+            );
         }        
      }      
      
@@ -125,7 +109,9 @@ class EditEmail extends Component {
                 <CardItem>
                         
                 <Body>
-                    <Button iconLeft block light onPress={() => Actions.pop()}>
+                    <Button 
+                    iconLeft block light onPress={() => Actions.popTo('dashboardV2')}
+                    >
                         <Icon name='arrow-back' />
                         <Text>Back To Account</Text>
                     </Button>

@@ -7,6 +7,7 @@ import BillTestData from './R_BillTestData.js';
 import Billing from './R_Billing.js'; 
 import HistoryTestData from './R_HistoryTestData.js';
 import HistoryR from './R_History.js'; 
+import EmailTestData from './R_EmailTestData.js';
 
 export default combineReducers({
     auth: AuthReducer,
@@ -17,5 +18,6 @@ export default combineReducers({
     billing: Billing,
     testDataH: HistoryTestData, 
     history: HistoryR, 
+    emailData: EmailTestData
 }); 
 

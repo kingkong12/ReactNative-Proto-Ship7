@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, StyleSheet } from 'react-native';
+import { Text, ScrollView, StyleSheet, View, Alert } from 'react-native';
 import { Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -13,25 +13,23 @@ class EditPersonalInfo extends Component {
           companyName: this.props.company,
           firstName: this.props.firstName,
           lastName: this.props.lastName,
-          altName: this.props.alterateName
+          altName: this.props.alterateName, 
+          
       };  
   }
-  
+    
     
   onValChange = (key, value) => {         
      this.setState({ [key]: value });     
    }
 
    
-  SaveChanges() {        
-    Toast.show({
-        text: this.state.error,
-        buttonText: 'Personal information Saved Successfully !!!',
-        type: 'success',
-        position: 'top',
-        duration: 4000    
-      });
-
+  SaveChanges() {
+    Alert.alert('SUcc',
+    'Personal Information Saved Successfully',   
+    
+);
+        
       this.props.ActionPersonalInfo({
         company: this.state.companyName,
         firstName: this.state.firstName,
@@ -41,7 +39,7 @@ class EditPersonalInfo extends Component {
   }
   
   
-  render() {
+  render() {          
     return (
       <ScrollView style={styles.conatinerStyles}>
         <Root>
@@ -118,15 +116,18 @@ class EditPersonalInfo extends Component {
             <CardItem>
                         
                 <Body>
-                    <Button iconLeft block light onPress={() => Actions.pop()}>
+                    <Button 
+                    iconLeft block light onPress={() => Actions.popTo('MyAccount')}
+                    >
                         <Icon name='arrow-back' />
-                        <Text>Back To Account</Text>
+                        <Text>Back To Home</Text>
                     </Button>
                 </Body>
                 
-        </CardItem>
+        </CardItem>      
+         
 
-        </Card> 
+        </Card>          
 
         </Root>    
       </ScrollView>    

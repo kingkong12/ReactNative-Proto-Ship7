@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import firebase from 'firebase'; 
 import { Provider } from 'react-redux'; 
 import { createStore, applyMiddleware } from 'redux'; 
@@ -28,7 +28,9 @@ export default class HelloWorldApp extends Component {
     
     return (
         <Provider store={store}>
+          <View style={{ flex: 1 }}>
             <Router /> 
+          </View>  
         </Provider>        
     );
   }

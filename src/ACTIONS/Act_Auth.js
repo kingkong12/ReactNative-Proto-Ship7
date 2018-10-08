@@ -36,7 +36,7 @@ import { EMAIL_CHANGED,
     console.log('Success in LOGIN');
     console.log(user.email); 
     console.log(user.uid);
-    Actions.dashboard({ user });
+    Actions.dashboardV2({ user });
     dispatch({ type: LOGIN_USER_SUCCESS, 
                 payload: user }); 
 };

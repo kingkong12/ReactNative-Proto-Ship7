@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, StyleSheet } from 'react-native';
-import {Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
+import { Root, Card, CardItem, Body, Item, Label, Input, Button, Icon, Toast } from 'native-base'; 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux'; 
 import { ChangePasswordSecurity } from '../ACTIONS/Act_Index.js'; 
@@ -120,7 +120,9 @@ class EditPassword extends Component {
                 <CardItem>
                         
                 <Body>
-                    <Button iconLeft block light onPress={() => Actions.pop()}>
+                    <Button 
+                    iconLeft block light onPress={() => Actions.popTo('dashboardV2')}
+                    >
                         <Icon name='arrow-back' />
                         <Text>Back To Account</Text>
                     </Button>
